@@ -2,18 +2,36 @@
 
 @section('content')
 
-<h2>Data Lokasi</h2>
+<h3>Data Lokasi</h3>
+
+@if(session('success'))
+<p>{{ session('success') }}</p>
+@endif
 
 <form method="POST" action="/lokasi">
 @csrf
-<input type="text" name="nama_lokasi" placeholder="Nama Lokasi">
+Nama Lokasi:<br>
+<input type="text" name="nama_lokasi">
+<br><br>
+
 <button type="submit">Tambah</button>
 </form>
 
 <hr>
 
-@foreach($data as $item)
-<p>{{ $item->nama_lokasi }}</p>
+<table border="1" cellpadding="5">
+<tr>
+<th>No</th>
+<th>Nama Lokasi</th>
+</tr>
+
+@foreach($data as $i => $item)
+<tr>
+<td>{{ $i+1 }}</td>
+<td>{{ $item->nama_lokasi }}</td>
+</tr>
 @endforeach
+
+</table>
 
 @endsection

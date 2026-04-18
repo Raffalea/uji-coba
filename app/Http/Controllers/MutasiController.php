@@ -22,13 +22,12 @@ class MutasiController extends Controller
     {
         $aset = Aset::find($request->aset_id);
 
-        // MutasiAset::create([
-        //     'aset_id' => $request->aset_id,
-        //     'lokasi_asal_id' => $aset->lokasi_id,
-        //     'lokasi_tujuan_id' => $request->lokasi_tujuan_id,
-        //     'user_id' => 1,
-        //     'tanggal_mutasi' => now()
-        // ]);
+        MutasiAset::create([
+            'aset_id' => $request->aset_id,
+            'lokasi_asal_id' => $aset->lokasi_id,
+            'lokasi_tujuan_id' => $request->lokasi_tujuan_id,
+            'tanggal_mutasi' => now()
+        ]);
 
         // UPDATE lokasi aset
         $aset->lokasi_id = $request->lokasi_tujuan_id;
