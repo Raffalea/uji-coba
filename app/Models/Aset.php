@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aset extends Model
 {
-    //
-    public function kategori()
-    {
+    protected $table = 'aset';
+
+    protected $fillable = [
+        'nama_aset',
+        'kategori_id',
+        'lokasi_id'
+    ];
+
+    public function kategori() {
         return $this->belongsTo(KategoriAset::class, 'kategori_id');
     }
 
-    public function lokasi()
-    {
+    public function lokasi() {
         return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 }
