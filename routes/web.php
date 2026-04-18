@@ -6,11 +6,9 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\MutasiController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [AsetController::class, 'index']);
 
     Route::resource('kategori', KategoriController::class);
     Route::resource('lokasi', LokasiController::class);
-    Route::resource('aset', AsetController::class);
     Route::resource('mutasi', MutasiController::class);
