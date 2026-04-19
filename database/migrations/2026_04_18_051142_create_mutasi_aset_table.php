@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mutasi_aset', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->foreignId('aset_id')->constrained('aset');
             $table->foreignId('lokasi_asal_id')->constrained('lokasi');
             $table->foreignId('lokasi_tujuan_id')->constrained('lokasi');

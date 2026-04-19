@@ -20,6 +20,10 @@ class MutasiAset extends Model
         return $this->belongsTo(Aset::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function lokasiAsal() {
         return $this->belongsTo(Lokasi::class, 'lokasi_asal_id');
     }

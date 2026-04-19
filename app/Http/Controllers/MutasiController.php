@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MutasiAset;
+use App\Models\User;
 use App\Models\Aset;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
@@ -11,11 +12,12 @@ class MutasiController extends Controller
 {
     public function index()
     {
+        $user = User::all();
         $aset = Aset::all();
         $lokasi = Lokasi::all();
-        $mutasi = MutasiAset::with(['aset', 'lokasiAsal', 'lokasiTujuan'])->get();
+        $mutasi = MutasiAset::with(['aset', 'lokasiAsal', 'lokasiTujuan', 'user'])->get();
 
-        return view('mutasi.index', compact('aset', 'lokasi', 'mutasi'));
+        return view('mutasi.index', compact('aset', 'lokasi', 'mutasi', 'user'));
     }
 
     public function store(Request $request)
@@ -24,6 +26,7 @@ class MutasiController extends Controller
 
         MutasiAset::create([
             'aset_id' => $request->aset_id,
+            'user_id' => $request->user_id,
             'lokasi_asal_id' => $aset->lokasi_id,
             'lokasi_tujuan_id' => $request->lokasi_tujuan_id,
             'tanggal_mutasi' => now()

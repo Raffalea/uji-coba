@@ -29,6 +29,15 @@ Lokasi Tujuan:<br>
 </select>
 <br><br>
 
+User:<br>
+<select name="user_id">
+<option value="">-- Pilih User --</option>
+@foreach($user as $u)
+<option value="{{ $u->id }}">{{ $u->name }}</option>
+@endforeach
+</select>
+<br><br>
+
 <button type="submit">Mutasi</button>
 </form>
 
@@ -40,6 +49,7 @@ Lokasi Tujuan:<br>
 <th>Aset</th>
 <th>Dari</th>
 <th>Ke</th>
+<th>User</th>
 </tr>
 
 @foreach($mutasi as $i => $m)
@@ -48,6 +58,7 @@ Lokasi Tujuan:<br>
 <td>{{ $m->aset->nama_aset ?? '-' }}</td>
 <td>{{ $m->lokasiAsal->nama_lokasi ?? '-' }}</td>
 <td>{{ $m->lokasiTujuan->nama_lokasi ?? '-' }}</td>
+<td>{{ $m->user->name ?? '-' }}</td>
 </tr>
 @endforeach
 
